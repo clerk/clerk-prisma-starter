@@ -1,0 +1,20 @@
+{
+    "name": "clerk-prisma-starter",
+    "description": "Official example use case for how you setup Prisma with Clerk.dev to achieve authenticated user access for your data.",
+    "repository": "https://github.com/clerkinc/clerk-prisma-starter",
+    "keywords": ["prisma", "clerk", "authentication"],
+    "env": {
+        "CLERK_FRONTEND_API": {
+        "description": "The hostname of Clerk Frontend API used for authentication.",
+        "value": "TODO"
+        },
+        "CLERK_API_KEY": {
+        "description": "The secret key for accessing the Clerk Backend API.",
+        "value": "TODO"
+        },
+        "DATABASE_URL": {
+        "description": "Set this to the database URL, prisma needs to operate on.",
+        "value": "TODO"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+model Post {
+  id          String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  title       String
+  body        String?
+  views       Int      @default(0)
+  author      String
+  authorEmail String
+
+  @@unique([authorEmail, title])
+}
