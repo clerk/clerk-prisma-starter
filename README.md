@@ -16,7 +16,7 @@ The **Starter Posts App** allows authenticated users to create posts in the Pris
 
 This example app uses:
 
-- [Clerk](https://clerk.dev) as an authentication provider.
+- [Clerk](https://clerk.dev?utm_source=github&utm_medium=starters&utm_campaign=prisma) as an authentication provider.
 - [Prisma](https://www.prisma.io/) for data storage.
 
 ## Where the magic happens
@@ -34,10 +34,10 @@ Another point which seems a major benefit to most is that depending on the natur
 
 To run the example locally you need to:
 
-1. Sign up for a Clerk account at http://clerk.dev/.
+1. Sign up for a Clerk account at [http://clerk.dev/](http://clerk.dev/?utm_source=github&utm_medium=starters&utm_campaign=prisma).
 2. Clone this repository `git clone git@github.com:clerkinc/clerk-prisma-starter.git`.
 3. Setup the required API variables from your Clerk project as shown at [the example env file](./.env.example).
-4. `yarn` to install the required dependencies.
+4. `npm install` to install the required dependencies.
 5. Setup your Prisma database, following the [instructions](./server/db/README.md) at the `db` folder.
 6. `npm run dev` and you are good to go.
 

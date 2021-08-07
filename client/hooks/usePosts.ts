@@ -11,9 +11,9 @@ export function usePosts() {
     const retrievePosts = async function () {
       setArePostsLoading(true);
       try {
-        const apartments = (await (await fetch(`/api/posts`)).json()) as Post[];
+        const posts = (await (await fetch(`/api/posts`)).json()) as Post[];
 
-        setPosts(apartments);
+        setPosts(posts);
       } catch (err) {
         setPostsRetrievalError(err);
       } finally {
@@ -43,7 +43,7 @@ export function usePosts() {
 
       const [updatedPost] = await response.json();
 
-      /** Find the changed apartment and replace it. */
+      /** Find the changed post and replace it. */
       const updatedPostIndex = posts.findIndex(
         (post) => post.id === updatedPost.id
       );
@@ -64,7 +64,7 @@ export function usePosts() {
         throw Error(response.statusText);
       }
 
-      /** Find the changed apartment and delete it. */
+      /** Find the changed post and delete it. */
       const deletedPostIndex = posts.findIndex((post) => post.id === postId);
       posts.splice(deletedPostIndex, 1);
       setPosts([...posts]);
