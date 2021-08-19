@@ -1,5 +1,5 @@
 import { Flex, Box, Button, Text } from "@chakra-ui/react";
-import { SignedIn, SignedOut, useClerk } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 
 type MainLayoutProps = {
   children: React.ReactNode;

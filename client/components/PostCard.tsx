@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 // import Image from "next/image";
 import { CardLayout } from "./layouts";
 import type { Post } from "../../types";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 
 type PostCardProps = {
   post: Post;

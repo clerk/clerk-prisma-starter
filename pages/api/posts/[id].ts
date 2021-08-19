@@ -1,4 +1,4 @@
-import { requireSession, RequireSessionProp } from "@clerk/clerk-sdk-node";
+import { requireSession, RequireSessionProp } from "@clerk/nextjs/api";
 import { deletePost, getPostById, updatePost } from "../../../server/models";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getClerkUserPrimaryEmail } from "../../../server/auth/Clerk";

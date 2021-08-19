@@ -1,4 +1,4 @@
-import { SignedIn } from "@clerk/clerk-react";
+import { SignedIn } from "@clerk/nextjs";
 import Head from "next/head";
 import { PostList } from "../client/components/PostList";
 
