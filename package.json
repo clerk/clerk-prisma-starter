@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.4",
-    "@clerk/nextjs": "^1.0.0",
+    "@clerk/nextjs": "^2.0.1",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@fontsource/open-sans": "^4.5.0",
