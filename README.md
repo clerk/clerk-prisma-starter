@@ -6,6 +6,14 @@ This repo shows an example use case for how you setup Prisma with [Clerk](https:
 
 [![Open in VS Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/clerkinc/clerk-prisma-starter)
 
+---
+
+**Clerk is Hiring!**
+
+Would you like to work on Open Source software and help maintain this repository? Apply today https://apply.workable.com/clerk-dev/.
+
+---
+
 ## Starter Posts App
 
 The **Starter Posts App** allows authenticated users to create posts in the Prisma MongoDB database. Each user can also delete his own posts.
