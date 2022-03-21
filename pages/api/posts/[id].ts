@@ -1,24 +1,24 @@
-import { requireSession, RequireSessionProp } from "@clerk/nextjs/api";
+import { requireAuth, RequireAuthProp} from "@clerk/nextjs/api";
 import { deletePost, getPostById, updatePost } from "../../../server/models";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getClerkUserPrimaryEmail } from "../../../server/auth/Clerk";
 
-async function handler(
-  req: RequireSessionProp<NextApiRequest>,
+export default requireAuth(async (
+  req: RequireAuthProp<NextApiRequest>,
   res: NextApiResponse
-) {
-  /** On how this works visit https://nextjs.org/docs/api-routes/dynamic-api-routes */
+)  => {
+  // Get the userId from req.auth
+  // https://docs.clerk.dev/popular-guides/ssr-beta#introduction-of-the-auth-context
+  const { userId } = req.auth;
+
+  // Get the post id from the query params
+  // https://nextjs.org/docs/api-routes/dynamic-api-routes
   const postId = req.query.id as string;
 
-  /**
-   * For this example, we want to identify the email of the person trying to modify some post.
-   * We do this through the Clerk cookie ;)
-   */
-  const primaryEmailAddress = await getClerkUserPrimaryEmail(
-    req.session.userId as string
-  );
+   // For this example, we want to identify the email of the person trying to modify some post.
+  const primaryEmailAddress = await getClerkUserPrimaryEmail(userId);
 
-  /** We check if the persisted post email matches the requesters. */
+  // We check if the persisted post email matches the requesters.
   const persistedPost = await getPostById(postId);
 
   if (primaryEmailAddress !== persistedPost?.authorEmail) {
@@ -28,7 +28,7 @@ async function handler(
 
   switch (req.method) {
     case "PUT":
-      /** The client will send the post object in the PUT request body. */
+      // The client will send the post object in the PUT request body.
       const modifiedPost = req.body;
       const updatedPost = await updatePost(postId, modifiedPost);
 
@@ -42,6 +42,5 @@ async function handler(
       res.status(405).end();
       break;
   }
-}
+});
 
-export default requireSession(handler);

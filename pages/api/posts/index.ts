@@ -1,25 +1,26 @@
-import { requireSession, RequireSessionProp } from "@clerk/nextjs/api";
+import { requireAuth, RequireAuthProp} from "@clerk/nextjs/api";
 import { createPost, getPosts } from "../../../server/models";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getClerkUserPrimaryEmail } from "../../../server/auth/Clerk";
 
-async function handler(
-  req: RequireSessionProp<NextApiRequest>,
+export default requireAuth(async (
+  req: RequireAuthProp<NextApiRequest>,
   res: NextApiResponse
-) {
-  /** Allow only logged in users to view the post list. */
+) => {
+  // Get the userId from req.auth
+  // https://docs.clerk.dev/popular-guides/ssr-beta#introduction-of-the-auth-context
+  const { userId } = req.auth;
+
   switch (req.method) {
     case "GET":
       const postList = await getPosts();
       res.status(200).json(postList);
       break;
     case "POST":
-      const primaryEmailAddress = await getClerkUserPrimaryEmail(
-        req.session.userId as string
-      );
+      const primaryEmailAddress = await getClerkUserPrimaryEmail(userId);
 
       const newPost = req.body;
-      /** You can enrich the created post with the identified email as in PUT [id].ts . */
+      // You can enrich the created post with the identified email as in PUT [id].ts
       const createdPost = await createPost({
         authorEmail: primaryEmailAddress,
         ...newPost,
@@ -30,6 +31,5 @@ async function handler(
       res.status(405).end();
       break;
   }
-}
+});
 
-export default requireSession(handler);

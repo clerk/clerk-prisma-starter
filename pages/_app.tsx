@@ -9,7 +9,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 function ClerkPrismaMongoStarter({ Component, pageProps }: AppProps) {
   return (
-    <ClerkProvider>
+    <ClerkProvider {...pageProps}>
       <ChakraProvider theme={defaultTheme}>
         <MainLayout>
           <Component {...pageProps} />

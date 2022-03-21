@@ -12,9 +12,8 @@ export function usePosts() {
       setArePostsLoading(true);
       try {
         const posts = (await (await fetch(`/api/posts`)).json()) as Post[];
-
         setPosts(posts);
-      } catch (err) {
+      } catch (err: any) {
         setPostsRetrievalError(err);
       } finally {
         setArePostsLoading(false);
